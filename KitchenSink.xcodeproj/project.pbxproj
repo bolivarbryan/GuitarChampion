@@ -12,7 +12,7 @@
 		6164DD7F24D335560061940C /* Mi.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6164DD7924D335560061940C /* Mi.m4a */; };
 		6164DD8124D335560061940C /* Si.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6164DD7B24D335560061940C /* Si.m4a */; };
 		6164DD8224D335560061940C /* Sol.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 6164DD7C24D335560061940C /* Sol.m4a */; };
-		6164DD8524D35C240061940C /* GSPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6164DD8424D35C240061940C /* GSPlayer.swift */; };
+		6164DD8524D35C240061940C /* GSAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6164DD8424D35C240061940C /* GSAudio.swift */; };
 		6164DD8824D35C800061940C /* Note.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6164DD8724D35C800061940C /* Note.swift */; };
 		61D0944624D3FF2C00118A39 /* MiGrave.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 61D0944524D3FF2800118A39 /* MiGrave.m4a */; };
 		61D100C424D1EE0C00B3E3B6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61D100C324D1EE0C00B3E3B6 /* AppDelegate.swift */; };
@@ -49,7 +49,7 @@
 		6164DD7924D335560061940C /* Mi.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Mi.m4a; sourceTree = "<group>"; };
 		6164DD7B24D335560061940C /* Si.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Si.m4a; sourceTree = "<group>"; };
 		6164DD7C24D335560061940C /* Sol.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sol.m4a; sourceTree = "<group>"; };
-		6164DD8424D35C240061940C /* GSPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSPlayer.swift; sourceTree = "<group>"; };
+		6164DD8424D35C240061940C /* GSAudio.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSAudio.swift; sourceTree = "<group>"; };
 		6164DD8724D35C800061940C /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		61D0944524D3FF2800118A39 /* MiGrave.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = MiGrave.m4a; sourceTree = "<group>"; };
 		61D0944724D40BB700118A39 /* KitchenSink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KitchenSink.entitlements; sourceTree = "<group>"; };
@@ -111,7 +111,7 @@
 		6164DD8324D35BFF0061940C /* AudioManager */ = {
 			isa = PBXGroup;
 			children = (
-				6164DD8424D35C240061940C /* GSPlayer.swift */,
+				6164DD8424D35C240061940C /* GSAudio.swift */,
 			);
 			name = AudioManager;
 			sourceTree = "<group>";
@@ -330,7 +330,7 @@
 				61D100C424D1EE0C00B3E3B6 /* AppDelegate.swift in Sources */,
 				61D100CB24D1EE0C00B3E3B6 /* ContentView.swift in Sources */,
 				61D100C624D1EE0C00B3E3B6 /* SceneDelegate.swift in Sources */,
-				6164DD8524D35C240061940C /* GSPlayer.swift in Sources */,
+				6164DD8524D35C240061940C /* GSAudio.swift in Sources */,
 				6164DD8824D35C800061940C /* Note.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

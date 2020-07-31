@@ -1,5 +1,5 @@
 //
-//  GSPlayer.swift
+//  GSAudio.swift
 //  KitchenSink
 //
 //  Created by Bryan Bolivar on 30/07/20.
