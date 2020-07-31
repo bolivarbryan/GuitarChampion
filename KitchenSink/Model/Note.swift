@@ -9,27 +9,24 @@
 import Foundation
 
 enum Note: String {
-    case Mi = "Note 6"
-    case Si = "Note 5"
-    case Sol = "Note 4"
-    case Re = "Note 3"
-    case La = "Note 2"
-    case MiGrave = "Note 1"
+    case Mi
+    case Si
+    case Sol
+    case Re
+    case La
+    case MiGrave
     
     var soundURL: String? {
+        return Bundle.main.path(forResource: self.rawValue, ofType: "m4a")
+    }
+    
+    var name: String {
         switch self {
-        case .Mi:
-            return Bundle.main.path(forResource: "Note 6", ofType: "m4a")
-        case .Si:
-            return Bundle.main.path(forResource: "Note 5", ofType: "m4a")
-        case .Sol:
-            return Bundle.main.path(forResource: "Note 4", ofType: "m4a")
-        case .Re:
-            return Bundle.main.path(forResource: "Note 3", ofType: "m4a")
-        case .La:
-            return Bundle.main.path(forResource: "Note 2", ofType: "m4a")
         case .MiGrave:
-            return Bundle.main.path(forResource: "Note 1", ofType: "m4a")
+            return "Mi-"
+        default:
+            return self.rawValue
         }
     }
+    
 }

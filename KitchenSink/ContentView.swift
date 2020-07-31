@@ -13,130 +13,39 @@ struct ContentView: View {
 
     var body: some View {
         ZStack {
-            Circle()
-                .fill(Color.black)
-                .opacity(0.6)
-                .overlay(
-                    Circle()
-                        .stroke(lineWidth: 3).fill(Color.purple)
-                )
+            BorderedCircle(color: Color(red: 0.87, green: 0.73, blue: 0.52),
+                           borderColor: Color(red: 0.54, green: 0.411, blue: 0.07))
+            
             VStack{
                 HStack {
-                    Circle()
-                        .fill(Color.black)
-                        .frame(width: 100, height: 100, alignment: .trailing)
-                        .overlay(
-                            Text("MI")
-                                .font(.largeTitle)
-                                .foregroundColor(.white)
-                                .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
-                                    playAudio(note: .MiGrave)
-                                })
-                        )
-                        .overlay(
-                            Circle()
-                                .stroke(lineWidth: 3).fill(Color.purple)
-                        )
+                    CircleButton(note: .MiGrave)
                     Spacer()
-                    Circle()
-                        .fill(Color.red)
-                        .frame(width: 100, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: .trailing)
-                        .overlay(
-                            Text("RE")
-                                .font(.largeTitle)
-                                .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
-                                    playAudio(note: .Re)
-                                })
-                        )
-                        .overlay(
-                            Circle()
-                                .stroke(lineWidth: 3).fill(Color.purple)
-                        )
-                        .overlay(
-                            Circle()
-                                .stroke(lineWidth: 3).fill(Color.purple)
-                        )
+                    CircleButton(note: .Re)
                 }
                 .padding()
                 HStack {
-                    Circle()
-                        .fill(Color.blue)
-                        .frame(width: 100, height: 100, alignment: .trailing)
-                        .overlay(
-                            Text("Mi-")
-                                .font(.largeTitle)
-                                .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
-                                    playAudio(note: .Mi)
-                                })
-                        )
+                    CircleButton(note: .Mi)
                     Spacer()
-                    Circle()
-                        .fill(Color.yellow)
-                        .frame(width: 100, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: .trailing)
-                        .overlay(
-                            Text("SOL")
-                                .font(.largeTitle)
-                                .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
-                                    playAudio(note: .Sol)
-                                })
-                        )
-                        .overlay(
-                            Circle()
-                                .stroke(lineWidth: 3).fill(Color.purple)
-                        )
+                    CircleButton(note: .Sol)
                 }
                 .padding()
             }
             .padding()
             
             VStack {
-                    Circle()
-                        .fill(Color.green)
-                        .frame(width: 100, height: 100, alignment: .trailing)
-                        .overlay(
-                            Text("LA")
-                                .font(.largeTitle)
-                                .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
-                                    playAudio(note: .La)
-                                })
-                        )
-                        .overlay(
-                            Circle()
-                                .stroke(lineWidth: 3).fill(Color.purple)
-                        )
-                    Spacer()
-                    Circle()
-                        .fill(Color.purple)
-                        .frame(width: 100, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: .trailing)
-                        .overlay(
-                            Text("SI")
-                                .font(.largeTitle)
-                                .onTapGesture(count: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/, perform: {
-                                    playAudio(note: .Si)
-                                })
-                        )
-                        .overlay(
-                            Circle()
-                                .stroke(lineWidth: 3).fill(Color.purple)
-                        )
+                CircleButton(note: .La)
+                Spacer()
+                CircleButton(note: .Si)
             }
             .padding()
             
-            Circle()
-                .fill(Color.clear)
-                .frame(height:150)
-                .overlay(
-                    Circle()
-                        .stroke(lineWidth: 3).fill(Color.purple)
-                )
-                
+            Image(systemName: "music.note")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 50)
+                .padding()
         }
         .frame(width: 400, height: 400, alignment: .trailing)
-       
-    }
-    
-    func playAudio(note: Note) {
-        GSAudio.sharedInstance.playSound(soundFileName: note.rawValue)
     }
 
 }
@@ -144,62 +53,89 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
-            
+            .preferredColorScheme(.light)
+    }
+}
+
+struct CircleButton: View {
+    @Environment(\.colorScheme) var colorScheme
+    @State var note: Note
+    
+    var body: some View {
+        AnimatedButton(buttonStyle: PulsingButtonStyle.self, action: {
+            print(note.rawValue)
+     
+        }, label: {
+            Text(note.name)
+                .font(.largeTitle)
+                .frame(width: 60, height: 60)
+        }, animationSpeed: 1, note: note)
+      
+    }
+    
+
+}
+
+struct BorderedCircle: View {
+    @State var color: Color
+    @State var borderColor: Color
+    
+    var body: some View {
+        Circle()
+            .fill(color)
+            .overlay(
+                Circle()
+                    .stroke(lineWidth: 10).fill(borderColor)
+            )
     }
 }
 
 
-/*
- Button(action: { playAudio(note: .MiGrave) }){
-     Text("Mi")
-         .foregroundColor(.white)
-         .padding(15)
-         .background(RoundedRectangle(cornerRadius: 5).fill(Color.blue))
-         .compositingGroup()
-         .shadow(color: .black, radius: 3)
- }
- 
- 
- Button(action: { playAudio(note: .La) }){
-     Text("La")
-         .foregroundColor(.white)
-         .padding(15)
-         .background(RoundedRectangle(cornerRadius: 5).fill(Color.blue))
-         .compositingGroup()
-         .shadow(color: .black, radius: 3)
- }
- Button(action: { playAudio(note: .Re) }){
-     Text("Re")
-         .foregroundColor(.white)
-         .padding(15)
-         .background(RoundedRectangle(cornerRadius: 5).fill(Color.blue))
-         .compositingGroup()
-         .shadow(color: .black, radius: 3)
- }
- Button(action: { playAudio(note: .Sol) }){
-     Text("Sol")
-         .foregroundColor(.white)
-         .padding(15)
-         .background(RoundedRectangle(cornerRadius: 5).fill(Color.blue))
-         .compositingGroup()
-         .shadow(color: .black, radius: 3)
- }
- 
- Button(action: { playAudio(note: .Si) }){
-     Text("Si")
-         .foregroundColor(.white)
-         .padding(15)
-         .background(RoundedRectangle(cornerRadius: 5).fill(Color.blue))
-         .compositingGroup()
-         .shadow(color: .black, radius: 3)
- }
- Button(action: { playAudio(note: .Mi) }){
-     Text("Mi")
-         .foregroundColor(.white)
-         .padding(15)
-         .background(RoundedRectangle(cornerRadius: 5).fill(Color.blue))
-         .compositingGroup()
-         .shadow(color: .black, radius: 3)
- }
+protocol AnimatingButtonStyle: ButtonStyle {
+    init(animation: Double)
+}
 
- */
+struct PulsingButtonStyle: AnimatingButtonStyle {
+    let animation: Double
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding()
+            .background(Color(red: 0.54, green: 0.411, blue: 0.07))
+            .clipShape(Circle())
+            .foregroundColor(.white)
+            .padding(4)
+            .overlay(
+                Circle()
+                    .stroke(Color(red: 0.54, green: 0.411, blue: 0.07), lineWidth: 2)
+                    .scaleEffect(CGFloat(1 + animation))
+                    .opacity(1 - animation)
+            )
+    }
+}
+
+struct AnimatedButton<ButtonStyle: AnimatingButtonStyle,  Content: View>: View {
+    let buttonStyle: ButtonStyle.Type
+    let action: () -> Void
+    let label: () -> Content
+    var animationSpeed = 5.0
+    @State var note: Note
+    @State private var animation = 0.0
+
+    var body: some View {
+        Button(action: {
+            playAudio(note: note)
+            animation = 0.0
+            withAnimation(Animation.easeOut(duration: animationSpeed)) {
+                animation = 1
+            }
+        }, label: label)
+            .buttonStyle(buttonStyle.init(animation: animation))
+            
+    }
+    
+    func playAudio(note: Note) {
+        GSAudio.sharedInstance.playSound(soundFileName: note.rawValue)
+    }
+}
+
