@@ -12,64 +12,67 @@ import AVFoundation
 struct ContentView: View {
     @State private var phase = 0.0
     @State private var chordsOpacity = 1.0
-    
+
     var body: some View {
-        ZStack {
-            
-            ForEach(0..<6) { i in
-                Wave(strength: 5,
-                     frequency: 10,
-                     phase: self.phase)
-                    .stroke(Color.gray,
-                            lineWidth: 5)
-                    .offset(x: (CGFloat(i) * 50) - 120)
-                    .opacity(chordsOpacity)
-            }
-            
+        NavigationView {
             ZStack {
-                BorderedCircle(color: Color(red: 0.87, green: 0.73, blue: 0.52),
-                               borderColor: Color(red: 0.54, green: 0.411, blue: 0.07))
-                VStack{
-                    HStack {
-                        CircleButton(note: .MiGrave)
-                        Spacer()
-                        CircleButton(note: .Re)
+                ForEach(0..<6) { i in
+                    Wave(strength: 5,
+                         frequency: 10,
+                         phase: self.phase)
+                        .stroke(Color.gray,
+                                lineWidth: 5)
+                        .offset(x: (CGFloat(i) * 50) - 120)
+                        .opacity(chordsOpacity)
+                }
+                
+                ZStack {
+                    BorderedCircle(color: Color(red: 0.87, green: 0.73, blue: 0.52),
+                                   borderColor: Color(red: 0.54, green: 0.411, blue: 0.07))
+                    VStack{
+                        HStack {
+                            CircleButton(note: .MiGrave)
+                            Spacer()
+                            CircleButton(note: .Re)
+                        }
+                        .padding()
+                        HStack {
+                            CircleButton(note: .Mi)
+                            Spacer()
+                            CircleButton(note: .Sol)
+                        }
+                        .padding()
                     }
                     .padding()
-                    HStack {
-                        CircleButton(note: .Mi)
+                    
+                    VStack {
+                        CircleButton(note: .La)
                         Spacer()
-                        CircleButton(note: .Sol)
+                        CircleButton(note: .Si)
                     }
                     .padding()
+                    
+                    Image(systemName: "music.note")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 50)
+                        .padding()
                 }
-                .padding()
-                
-                VStack {
-                    CircleButton(note: .La)
-                    Spacer()
-                    CircleButton(note: .Si)
-                }
-                .padding()
-                
-                Image(systemName: "music.note")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(height: 50)
-                    .padding()
-            }
-            .frame(width: 400, height: 400, alignment: .trailing)
+                .frame(width: 400, height: 400, alignment: .trailing)
 
-   
-        }
-        .edgesIgnoringSafeArea(.all)
-        .onAppear {
-            withAnimation(Animation.linear(duration: 1).repeatForever(autoreverses: false)) {
-                self.phase = .pi * 2
+       
             }
+            .edgesIgnoringSafeArea(.all)
+            .onAppear {
+                withAnimation(Animation.linear(duration: 1).repeatForever(autoreverses: false)) {
+                    self.phase = .pi * 2
+                }
+            }
+            .navigationBarTitle(Text("Guitar Champion"))
         }
+        .navigationViewStyle(StackNavigationViewStyle())
+
     }
-
 }
 
 struct ContentView_Previews: PreviewProvider {
@@ -123,7 +126,6 @@ struct BorderedCircle: View {
     }
 }
 
-
 protocol AnimatingButtonStyle: ButtonStyle {
     init(animation: Double)
 }
@@ -146,31 +148,6 @@ struct PulsingButtonStyle: AnimatingButtonStyle {
             )
     }
 }
-
-struct AnimatedButton<ButtonStyle: AnimatingButtonStyle,  Content: View>: View {
-    let buttonStyle: ButtonStyle.Type
-    let action: () -> Void
-    let label: () -> Content
-    var animationSpeed = 5.0
-    @State var note: Note
-    @State private var animation = 0.0
-
-    var body: some View {
-        Button(action: {
-            playAudio(note: note)
-            animation = 0.0
-            withAnimation(Animation.easeOut(duration: animationSpeed)) {
-                animation = 1
-            }
-        }, label: label)
-            .buttonStyle(buttonStyle.init(animation: animation))
-    }
-    
-    func playAudio(note: Note) {
-        GSAudio.sharedInstance.playSound(soundFileName: note.rawValue)
-    }
-}
-
 
 struct Wave: Shape {
     var animatableData: Double {
@@ -205,3 +182,5 @@ struct Wave: Shape {
         return Path(path.cgPath)
     }
 }
+
+
