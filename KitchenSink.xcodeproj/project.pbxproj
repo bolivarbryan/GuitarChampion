@@ -52,6 +52,7 @@
 		6164DD8424D35C240061940C /* GSPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GSPlayer.swift; sourceTree = "<group>"; };
 		6164DD8724D35C800061940C /* Note.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Note.swift; sourceTree = "<group>"; };
 		61D0944524D3FF2800118A39 /* MiGrave.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = MiGrave.m4a; sourceTree = "<group>"; };
+		61D0944724D40BB700118A39 /* KitchenSink.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = KitchenSink.entitlements; sourceTree = "<group>"; };
 		61D100C024D1EE0C00B3E3B6 /* KitchenSink.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KitchenSink.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		61D100C324D1EE0C00B3E3B6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		61D100C524D1EE0C00B3E3B6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -146,6 +147,7 @@
 		61D100C224D1EE0C00B3E3B6 /* KitchenSink */ = {
 			isa = PBXGroup;
 			children = (
+				61D0944724D40BB700118A39 /* KitchenSink.entitlements */,
 				6164DD8624D35C680061940C /* Model */,
 				6164DD8324D35BFF0061940C /* AudioManager */,
 				6164DD7624D3353C0061940C /* audioAssets */,
@@ -494,6 +496,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = KitchenSink/KitchenSink.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"KitchenSink/Preview Content\"";
 				DEVELOPMENT_TEAM = K87XPR878Y;
@@ -505,6 +508,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = bolivarbryan.KitchenSink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -514,6 +518,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = KitchenSink/KitchenSink.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"KitchenSink/Preview Content\"";
 				DEVELOPMENT_TEAM = K87XPR878Y;
@@ -525,6 +530,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = bolivarbryan.KitchenSink;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
